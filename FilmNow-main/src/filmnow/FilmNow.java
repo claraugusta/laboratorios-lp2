@@ -182,4 +182,40 @@ public class FilmNow {
 		return exibicao.toString();
 	}
 	
+	/**
+     * Exibe a lista de filmes que contêm algum nome com seus índices e nomes.
+     * 
+     * @return Uma string com a lista de filmes, cada um em uma linha.
+     */
+	public String exibeFilmesNome(String nome) {
+		StringBuilder exibicao = new StringBuilder();
+		for (int i = 0; i < filmes.length - 1; i++) {
+			if (filmes[i] != null && filmes[i].getNome().toLowerCase().contains(nome.toLowerCase())) {
+				exibicao.append(i+1 + " - " + filmes[i].getNome() + "\n");
+			}
+		}
+		if (exibicao.length() > 0) {
+	        exibicao.setLength(exibicao.length() - 1);
+	    }
+		return exibicao.toString();
+	}
+	
+	/**
+     * Exibe a lista de filmes de um mesmo ano com seus índices e nomes.
+     * 
+     * @return Uma string com a lista de filmes, cada um em uma linha.
+     */
+	public String exibeFilmesAno(String ano) {
+		StringBuilder exibicao = new StringBuilder();
+		for (int i = 0; i < filmes.length - 1; i++) {
+			if (filmes[i] != null && filmes[i].getAno().equals(ano)) {
+				exibicao.append(i+1 + " - " + filmes[i].getNome() + "\n");
+			}
+		}
+		if (exibicao.length() > 0) {
+	        exibicao.setLength(exibicao.length() - 1);
+	    }
+		return exibicao.toString();
+	}
+	
 }

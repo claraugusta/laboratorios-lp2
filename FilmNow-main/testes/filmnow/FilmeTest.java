@@ -25,12 +25,21 @@ public class FilmeTest {
        String msg = "Esperando Nome e Ano";
        assertEquals( "Avatar, 2009", this.filmeBase.nomeAno(), msg);
     }
+    
     @Test
-    void testEqualsFalse() {
+    void testEqualsAnosDiferentes() {
     	Filme avatar1 = new Filme("Avatar", "2009", "Disney+");
     	Filme avatar2 = new Filme("Avatar", "2008", "Disney+");
     	assertFalse(avatar1.equals(avatar2));
     }
+    
+    @Test
+    void testEqualsNomesDiferentes() {
+    	Filme avatar1 = new Filme("Avatar", "2009", "Disney+");
+    	Filme avatar2 = new Filme("Up: Altas Aventuras", "2009", "Disney+");
+    	assertFalse(avatar1.equals(avatar2));
+    }
+    
     @Test
     void testEqualsLocalDiferente() {
     	Filme avatar1 = new Filme("Avatar", "2009", "Disney+");

@@ -47,6 +47,8 @@ public class MainFilmNow {
 				"\n---\nMENU\n" + 
 						"(A)Adicionar filme\n" + 
 						"(M)Mostrar todos\n" + 
+						"(MN)Mostrar filme por nome\n" +
+						"(MA)Mostrar filme por ano\n" +
 						"(D)Detalhar filme\n" + 
 						"(L)Adicionar local\n" +
 						"(O)Remover local\n" +
@@ -74,6 +76,12 @@ public class MainFilmNow {
 			break;
 		case "M":
 			mostrarFilmes(fn);
+			break;
+		case "MN":
+			mostrarFilmesNome(fn, scanner);
+			break;
+		case "MA":
+			mostrarFilmesAno(fn, scanner);
 			break;
 		case "D":
 			detalharFilme(fn, scanner);
@@ -111,7 +119,20 @@ public class MainFilmNow {
 	private static void mostrarFilmes(FilmNow fn) {
 		System.out.println(fn.exibeFilmes());	
 	}
-
+	
+	private static void mostrarFilmesNome(FilmNow fn, Scanner scanner) {
+		System.out.println("\nNome> ");
+		scanner.nextLine();
+		String nome = scanner.nextLine();
+		System.out.println(fn.exibeFilmesNome(nome));	
+	}
+	
+	private static void mostrarFilmesAno(FilmNow fn, Scanner scanner) {
+		System.out.println("\nAno> ");
+		scanner.nextLine();
+		String ano = scanner.next();
+		System.out.println(fn.exibeFilmesAno(ano));	
+	}
 	/**
 	 * Imprime os detalhes de um dos filmes. 
 	 * 

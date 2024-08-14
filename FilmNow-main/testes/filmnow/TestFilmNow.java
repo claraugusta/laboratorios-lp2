@@ -208,5 +208,21 @@ class TestFilmNow {
 		fn.cadastraFilme(2, "Barbie", "2024", "max");
 		assertEquals(fn.exibeFilmes(),"1 - Avatar\n2 - Barbie");
 	}
+	
+	@Test
+	void testExibeFilmesNome() {
+		fn.cadastraFilme(1,"Avatar", "2009", "Disney+");
+		fn.cadastraFilme(2,"Avatar: o caminho da água", "2022", "Disney+");
+		fn.cadastraFilme(3,"Up: Altas Aventuras", "2009", "Disney+");
+		assertEquals(fn.exibeFilmesNome("avatar"), "1 - Avatar\n2 - Avatar: o caminho da água");
+	}
+	
+	@Test 
+	void testExibeFilmesAno() {
+		fn.cadastraFilme(1,"Avatar", "2009", "Disney+");
+		fn.cadastraFilme(2,"Up: Altas Aventuras", "2009", "Disney+");
+		fn.cadastraFilme(3,"Avatar: o caminho da água", "2022", "Disney+");
+		assertEquals(fn.exibeFilmesAno("2009"), "1 - Avatar\n2 - Up: Altas Aventuras");
+	}
 
 }
