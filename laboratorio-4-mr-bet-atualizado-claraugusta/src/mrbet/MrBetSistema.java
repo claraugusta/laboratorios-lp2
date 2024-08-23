@@ -18,15 +18,15 @@ public class MrBetSistema {
 	}
 	
 	private static String menu(Scanner sc) {
-		System.out.println("\n(M)Minha inclusão de times\r\n"
-						+ "(R)Recuperar time\r\n"
-						+ "(.)Adicionar campeonato\r\n"
-						+ "(B)Bora incluir time em campeonato e Verificar se time está em campeonato\r\n"
-						+ "(E)Exibir campeonatos que o time participa\r\n"
-						+ "(T)Tentar a sorte e status\r\n"
-						+ "(!)Já pode fechar o programa!\r\n"
-						+ "\r\n"
-						+ "Opção>\r\n"
+		System.out.println("(M)Minha inclusão de times\n"
+						+ "(R)Recuperar time\n"
+						+ "(.)Adicionar campeonato\n"
+						+ "(B)Bora incluir time em campeonato e Verificar se time está em campeonato\n"
+						+ "(E)Exibir campeonatos que o time participa\n"
+						+ "(T)Tentar a sorte e status\n"
+						+ "(H) Histórico\n"
+						+ "(!)Já pode fechar o programa!\n"
+						+ "Opção>\n"
 						+ "");
 		return sc.next().toUpperCase();
 	}
@@ -50,6 +50,9 @@ public class MrBetSistema {
 			break;
 		case "T":
 			tentarSorte(mb, sc);
+			break;
+		case "H":
+			exibirHistorico(mb, sc);
 			break;
 		case "!":
 			saiPrograma();
@@ -138,6 +141,10 @@ public class MrBetSistema {
 			System.out.println(mb.listaApostas());		
 			break;
 		}
+	}
+	
+	private static void exibirHistorico(MrBet mb, Scanner sc) {
+		System.out.println(mb.historico());
 	}
 	
 	private static void saiPrograma() {

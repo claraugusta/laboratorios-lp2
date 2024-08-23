@@ -14,6 +14,10 @@ public class Aposta {
 		this.valorAposta = valorAposta;
 	}
 	
+	public int getColocacao() {
+		return colocacao;
+	}
+
 	public String toString() {
 		return String.format("%s\n%s\n%d/%d\nR$ %.2f", time.toString(), campeonato.getNome(), colocacao,
 				campeonato.getQtdeParticipantes(), valorAposta);

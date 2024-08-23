@@ -86,10 +86,13 @@ public class MrBet {
 	
 	public String insereAposta(String id, String campeonato, int colocacao, double valorAposta) {
 		Campeonato camp =  campeonatoMap.get(campeonato);
+		Time time = timesMap.get(id);
 		if(colocacao > camp.getQtdeParticipantes()) {
 			return "APOSTA NÃO REGISTRADA!";
 		}
-		apostas.add(new Aposta(timesMap.get(id), camp, colocacao, valorAposta));
+		Aposta novaAposta = new Aposta(time, camp, colocacao, valorAposta);
+		apostas.add(novaAposta);
+		time.insereAposta(novaAposta);
 		return "APOSTA REGISTRADA!";
 	}
 	
@@ -99,6 +102,47 @@ public class MrBet {
 			out += (i+1) + ". " + apostas.get(i).toString() + "\n\n";
 		}
 		out = out.substring(0, out.length() - 1);
+		return out;
+	}
+	
+	private String listaTimesMaisCompetitivos() {
+		String out = "";
+		int max = 0;
+		for(Time time : timesMap.values()) {
+			if(time.getQtdeCampeonatos() >= max) {
+				max = time.getQtdeCampeonatos();
+			}
+		}
+		for(Time time : timesMap.values()) {
+			if(time.getQtdeCampeonatos() >= max) {
+				out += time.toString() + " " + max + "\n";
+			}
+		}
+		return out;
+	}
+	
+	private String listaTimesZeroCompeticoes() {
+		String out = "";
+		for(Time time : timesMap.values()) {
+			if(time.getQtdeCampeonatos() == 0) {
+				out += time.toString() + "\n";
+			}
+		}
+		return out;
+	}
+	
+	private String listaTimesMaisPopulares() {
+		String out = "";
+		for(Time time : timesMap.values()) {
+			if(time.contaApostasEmPrimeiro() > 0) {
+				out += String.format("%s / %d\n", time.getNome(), time.contaApostasEmPrimeiro());
+			}
+		}
+		return out;
+	}
+	
+	public String historico() {
+		String out = String.format("Participação mais frequente em campeonatos\n%s\nAinda não participou de campeonato\n%s\nPopularidade em apostas\n%s", listaTimesMaisCompetitivos(), listaTimesZeroCompeticoes(), listaTimesMaisPopulares());
 		return out;
 	}
 }
