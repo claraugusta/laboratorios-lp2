@@ -15,9 +15,18 @@ public class Campeonato {
 		proxTime = 0;
 	}
 	
-	public void insereTime(Time time) {
-		if(proxTime < times.length) {
-			times[proxTime++] = time;
+	private boolean procuraTime(Time time) {
+		for(Time t : times) {
+			if(t != null && t.equals(time)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void insereTime(Time time) {		
+		if(!procuraTime(time)) {
+				times[proxTime++] = time;
 		}
 	}
 	

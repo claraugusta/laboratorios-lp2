@@ -49,6 +49,9 @@ public class MrBet {
 		return "CAMPEONATO ADICIONADO!";
 	}
 	
+	public Campeonato pegaCampeonato(String campeonato) {
+		return campeonatoMap.get(campeonato);
+	}
 
 	public String incluirTime(String id, String campeonato) {
 		verificaTime(id);
@@ -58,7 +61,7 @@ public class MrBet {
 		}
 		campeonatoMap.get(campeonato).insereTime(timesMap.get(id));
 		timesMap.get(id).insereCampeonato(campeonato);
-		return "ADICIONADO!";
+		return "TIME INCLUÍDO NO CAMPEONATO!";
 	}
 	
 	public String verificaTimeCampeonato(String id, String campeonato) {
@@ -109,7 +112,7 @@ public class MrBet {
 		String out = "";
 		int max = 0;
 		for(Time time : timesMap.values()) {
-			if(time.getQtdeCampeonatos() >= max) {
+			if(time.getQtdeCampeonatos() > max) {
 				max = time.getQtdeCampeonatos();
 			}
 		}
