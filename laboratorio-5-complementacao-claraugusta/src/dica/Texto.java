@@ -28,7 +28,7 @@ public class Texto implements ElementoInterface{
 	}
 	
 	public String exibeConteudoDetalhado() {
-		return String.format("%s\n %d caracteres.\n", texto, contaCaracteres(texto));
+		return String.format("%s (%d caracteres).\n", texto, contaCaracteres(texto));
 	}
 	
 }

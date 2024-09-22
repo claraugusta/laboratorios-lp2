@@ -1,7 +1,9 @@
 package estudante;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import atividades.Atividade;
@@ -13,8 +15,9 @@ public class Estudante {
 	private String senha;
 	private String matricula;
 	private int bonificacao;
-	private List<Atividade> atividades;
+	private Map<String, Atividade> atividades;
 	private int atividadesCodigo;
+	private int creditos;
 	
 	public Estudante(String nome, String cpf, String senha, String matricula) throws NullPointerException, IllegalArgumentException{
 		if(nome == null) { 
@@ -46,10 +49,30 @@ public class Estudante {
 		this.senha = senha;
 		this.matricula = matricula;
 		this.bonificacao = 0;
-		this.atividades = new ArrayList<>();
+		this.atividades = new HashMap<>();
 		this.atividadesCodigo = 1;
+		this.creditos = 0;
 	}
 	
+	
+	public int getCreditos() {
+		return creditos;
+	}
+
+
+	public boolean setCreditos(int creditos) {
+		if(creditos == 22) {
+			return false;
+		}
+		if(creditos + this.creditos >= 22) {
+			this.creditos = 22;
+			return true;
+		}
+		this.creditos += creditos;
+		return true;
+	}
+
+
 	public void alteraSenha(String novaSenha) {
 		senha = novaSenha;
 	}
@@ -72,9 +95,23 @@ public class Estudante {
 		return atividadesCodigo;
 	}
 	
-	public void adicionaAtividade(Atividade atividade) {
-		atividades.add(atividade);
+	public void adicionaAtividade(String codigo, Atividade atividade) {
+		atividades.put(codigo, atividade);
 		atividadesCodigo++;
+	}
+	
+	public Atividade pegaAtividade(String codigo) {
+		return atividades.get(codigo);
+	}
+	
+	public ArrayList<Atividade> pegaAtividadeTipo(String tipo){
+		ArrayList<Atividade> atividadesTipo = new ArrayList<>();
+		for(Atividade a : atividades.values()) {
+			if(a.getTipo().equals(tipo.toUpperCase())) {
+				atividadesTipo.add(a);
+			}
+		}
+		return atividadesTipo;
 	}
 	
 	@Override

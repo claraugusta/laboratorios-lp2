@@ -1,14 +1,17 @@
 package atividades;
 
 public class Estagio extends Atividade{
-	private String disciplina;
+	private String empresa;
 	
-	public Estagio(String codigo, String descricao, String link, int horas, String disciplina) {
-		super(codigo, descricao, link, horas);
-		this.disciplina = disciplina;
+	public Estagio(String tipo, String codigo, int horas, String empresa) {
+		super(tipo, codigo, horas);
+		this.empresa = empresa;
 	}
 	
 	public boolean adicionaCreditos() {
+		if(creditos == 18) {
+			return false;
+		}
 		int calculo = (1/60) * getUnidadeAcumulada();
 		if(creditos + calculo > 18) {
 			calculo = 18;

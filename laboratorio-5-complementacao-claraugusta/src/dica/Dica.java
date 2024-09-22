@@ -25,6 +25,11 @@ public class Dica {
 	public void setID(int id) {
 		this.id = id;
 	}
+	
+	public int getID() {
+		return id;
+	}
+	
 	public Estudante pegaAutor() {
 		return autor;
 	}
@@ -39,8 +44,8 @@ public class Dica {
 		return true;
 	}
 	
-	public boolean adicionaElementoReferencia(List<String> referencias, boolean conferida) {	
-		ElementoInterface elemento = new Referencia(referencias, conferida);
+	public boolean adicionaElementoReferencia(String titulo, String fonte, int ano, int importancia, boolean conferida) {	
+		ElementoInterface elemento = new Referencia(titulo, fonte, ano, importancia, conferida);
 		elementos.add(elemento);
 		return true;
 	}

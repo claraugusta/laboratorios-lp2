@@ -3,29 +3,25 @@ package dica;
 import java.util.List;
 
 public class Referencia implements ElementoInterface {
-	private List<String> referencias;
 	private boolean conferida;
-	private String flag;
+	private int importancia;
+	private String titulo;
+	private String fonte;
+	private int ano;
 	
-	
-	public Referencia(List<String> referencias, boolean conferida) throws NullPointerException, IllegalArgumentException {
-		if (referencias == null) {
-            throw new NullPointerException("lista de referências nula.");
+	public Referencia(String titulo, String fonte, int ano, int importancia, boolean conferida) throws NullPointerException, IllegalArgumentException {
+		if (titulo == null || fonte == null) {
+            throw new NullPointerException("titulo ou fonte nula");
         }
-        if (referencias.isEmpty()) {
-            throw new IllegalArgumentException("lista de referências vazia.");
+        if (titulo.isEmpty() || fonte.isEmpty()) {
+            throw new IllegalArgumentException("titulo ou fonte vazia.");
         }
-		for(String dado : referencias) {
-			if(dado == null) {
-				throw new NullPointerException("ITEM NULO");
-			}
-			if(dado.isEmpty()) {
-				throw new IllegalArgumentException("ITEM VAZIO");
-			}
-		}
 				
-		this.referencias = referencias;
+		this.titulo = titulo;
+		this.fonte = fonte;
+		this.ano = ano;
 		this.conferida = conferida;
+		this.importancia = importancia;
 	}
 	
 	public int calculaBonus() {
@@ -40,18 +36,11 @@ public class Referencia implements ElementoInterface {
 	}
 	
 	public String exibeConteudo() {
-		String out = "";
-		for(String r : referencias) {
-			out += r.substring(0,r.length()-14) + "\n";
-		}
-		return out;
+		return String.format("Referência: %s, %s, ano: %d.", titulo, fonte, ano);
 	}
 	
 	public String exibeConteudoDetalhado() {
-		String out = "";
-		for(String r : referencias) {
-			out += r + "\n";
-		}
-		return out;
+
+		return String.format("Referência: %s, %s, ano: %d, importância: %d", titulo, fonte, ano, importancia);
 	}
 }

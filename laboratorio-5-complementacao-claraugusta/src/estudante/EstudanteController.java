@@ -1,10 +1,11 @@
 package estudante;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+
 
 import atividades.Atividade;
 
@@ -12,6 +13,7 @@ import atividades.Atividade;
 public class EstudanteController {
 	
 	private Map<String, Estudante> estudantesMap;
+
 	
 	public EstudanteController() {
 		estudantesMap = new HashMap<>();
@@ -53,12 +55,11 @@ public class EstudanteController {
 	public String[] listaEstudantes() {
 		int TAMANHO = estudantesMap.size();
 		int proxPos = 0;
-		ArrayList<Estudante> estudantesLista = new ArrayList<>(estudantesMap.values());
 		String[] exibicao = new String[TAMANHO];	
-		Collections.sort(estudantesLista, new ComparadorNome());	
-		for(Estudante e : estudantesLista) {
+		for(Estudante e : estudantesMap.values()) {
 			exibicao[proxPos++] = e.exibeAluno();
 		}
+		Arrays.sort(exibicao);
 		return exibicao;
 	}
 	
@@ -73,9 +74,10 @@ public class EstudanteController {
 		return ranking;
 	}
 	
-	public boolean adicionaAtividadeEstudante(Estudante estudante, Atividade atividade) {
-		estudante.adicionaAtividade(atividade);
+	public boolean adicionaAtividadeEstudante(Estudante estudante, String codigo,  Atividade atividade) {
+		estudante.adicionaAtividade(codigo, atividade);
 		return true;
 	}
 	
+
 }

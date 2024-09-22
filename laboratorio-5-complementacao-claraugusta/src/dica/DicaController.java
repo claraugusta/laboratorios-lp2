@@ -25,8 +25,12 @@ public class DicaController {
 		return estudanteController.pegaEstudante(cpf);
 	}
 	
-	public int adicionaDica(String senha, String cpf, String tema) {
+	private void validaSenha(String cpf, String senha) {
 		pegaEstudante(cpf).validaSenha(senha);
+	}
+	
+	public int adicionaDica(String senha, String cpf, String tema) {
+		validaSenha(cpf, senha);
 		Dica novaDica = new Dica(pegaEstudante(cpf), tema);
 		dicas.add(novaDica);
 		pegaDica(proxID).setID(proxID);;
@@ -37,18 +41,18 @@ public class DicaController {
 		return dicas.get(posicao);
 	}
 	
-	public boolean adicionaElementoReferenciaDica(String cpf, String senha, int posicao, List<String> referencias, boolean conferida) {
-		pegaEstudante(cpf).validaSenha(senha);
-		return pegaDica(posicao).adicionaElementoReferencia(referencias, conferida);
+	public boolean adicionaElementoReferenciaDica(String cpf, String senha, int posicao, String titulo, String fonte, int ano, int importancia, boolean conferida) {
+		validaSenha(cpf, senha);
+		return pegaDica(posicao).adicionaElementoReferencia(titulo,fonte, ano, importancia, conferida);
 	}
 	
 	public boolean adicionaElementoTextoDica(String cpf, String senha, int posicao, String texto) {
-		pegaEstudante(cpf).validaSenha(senha);
+		validaSenha(cpf, senha);
 		return pegaDica(posicao).adicionaElementoTexto(texto);
 	}
 	
 	public boolean adicionaElementoMultimidiaDica(String cpf, String senha, int posicao, String link, String cabecalho, int tempo) {
-		pegaEstudante(cpf).validaSenha(senha);
+		validaSenha(cpf, senha);
 		return pegaDica(posicao).adicionaElementoMultimidia(link, cabecalho, tempo);
 	}
 		
@@ -62,5 +66,29 @@ public class DicaController {
 		pegaEstudante(cpf).setBonificacao(bonusTotal);
 	}
 	
+	public String[] listaDicas() {
+		String[] dicasList = new String[dicas.size()];
+		int prox = 0;
+		for(Dica d : dicas) {
+			dicasList[prox++] = d.listaDica();
+		}
+		return dicasList;
+	}
 	
+	public String[] listaDicasDetalhadas() {
+		String[] dicasList = new String[dicas.size()];
+		int prox = 0;
+		for(Dica d : dicas) {
+			dicasList[prox++] = d.listaDicaDetalhada();
+		}
+		return dicasList;
+	}
+	
+	public String listaDicaPosicao(int posicao) {
+		return pegaDica(posicao).listaDica();
+	}
+	
+	public String listaDicaDetalhadaPosicao(int posicao) {
+		return pegaDica(posicao).listaDicaDetalhada();
+	}
 }
