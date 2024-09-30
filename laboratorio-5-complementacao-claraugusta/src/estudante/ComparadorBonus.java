@@ -6,7 +6,7 @@ public class ComparadorBonus implements Comparator<Estudante> {
 
 	@Override
 	public int compare(Estudante estudante1, Estudante estudante2) {
-		return estudante1.getBonificacao() - estudante2.getBonificacao();
+		return Integer.compare(estudante2.getBonificacao(), estudante1.getBonificacao());
 	}
 	
 }

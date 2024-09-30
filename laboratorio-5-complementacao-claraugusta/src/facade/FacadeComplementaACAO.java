@@ -13,9 +13,9 @@ public class FacadeComplementaACAO {
 	private AtividadeController atividadeC;
 	
 	public FacadeComplementaACAO() {
-		estudanteC = new EstudanteController();
-		dicaC = new DicaController(estudanteC);
 		atividadeC = new AtividadeController(estudanteC);
+		estudanteC = new EstudanteController();
+		dicaC = new DicaController(estudanteC);	
 	}
 	
 	public boolean criarEstudante(String nome, String cpf, String senha, String matricula) {
@@ -71,11 +71,11 @@ public class FacadeComplementaACAO {
 	}
 	
 	public boolean alterarDescricaoAtividade(String cpf, String senha, String codigoAtividade, String descricao) {
-		return false;
+		return estudanteC.alteraDescricaoAtividade(cpf, senha, codigoAtividade, descricao);
 	}
 	
 	public boolean alterarComprovacaoAtividade(String cpf, String senha, String codigoAtividade, String linkComprovacao) {
-		return false;
+		return estudanteC.alteraComprovacaoAtividade(cpf, senha, codigoAtividade, linkComprovacao);
 	}
 	
 	public String criarAtividadePesquisaExtensaoEmEstudante(String cpf, String senha, String tipo, int unidadeAcumulada, String subtipo) {
@@ -89,46 +89,41 @@ public class FacadeComplementaACAO {
 	public String criarAtividadeRepresentacaoEstudantil(String cpf, String senha, int unidadeAcumulada, String subtipo) {
 		return atividadeC.criaAtividadeEstagioEmEstudante(cpf, senha, subtipo, unidadeAcumulada, subtipo);
 	}
+	
 	public int creditosAtividade(String cpf, String senha, String tipo) {
-		return 0;
+		return estudanteC.creditosAtividade(cpf, senha, tipo);
 	}
 	
 	public String gerarMapaCreditosAtividades(String cpf, String senha) {
-		return "";
+		return estudanteC.geraMapaCreditosAtividades(cpf, senha);
 	}
 	
 	public boolean verificarMetaAlcancada(String cpf, String senha) {
-		return false;
+		return estudanteC.verificaMetaAlcancada(cpf, senha);
 	}
 
 	public String gerarRelatorioFinal(String cpf, String senha) {
-		//TODO
-		return "";
+		return estudanteC.gerarRelatorioFinal(cpf, senha);
 	}
 	
 	public String gerarRelatorioFinalPorAtividade(String cpf, String senha, String tipoAtividade) {
-		//TODO
-		return "";
+		return estudanteC.gerarRelatorioFinalPorAtividade(cpf, senha, tipoAtividade);
 	}
 	
 	public String gerarRelatorioParcial(String cpf, String senha, boolean salvar) {
-		//TODO
-		return "";
+		return estudanteC.gerarRelatorioParcial(cpf, senha, salvar);
 	}
 	
 	public String gerarRelatorioParcialPorAtividade(String cpf, String senha, boolean salvar, String tipoAtividade) {
-		//TODO
-		return "";
+		return estudanteC.gerarRelatorioParcialPorAtividade(cpf, senha, salvar, tipoAtividade);
 	}
 	
 	public String listarHistorico(String cpf, String senha) {
-		//TODO
-		return "";
+		return estudanteC.listarHistorico(cpf, senha);
 	}
 	
 	public boolean excluirItemHistorico(String cpf, String senha, String data) {
-		//TODO
-		return false;
+		return estudanteC.excluirItemHistorico(cpf, senha, data);
 	}
 
 
